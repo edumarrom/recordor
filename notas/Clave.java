@@ -2,7 +2,7 @@ public class Clave implements TipoID{
     private int valor;
 
     public Clave(NotaGenerica nota) {
-        setValor(nota.getFechaCreado().hashCode());
+        setValor(nota.getFechaCreada().hashCode());
     }
 
     @Override

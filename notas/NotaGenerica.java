@@ -1,20 +1,25 @@
 import java.util.Date;
+import java.util.Scanner;
 
 public abstract class NotaGenerica{
     private TipoID ID;
     private String titulo;
-    private String detalles;
-    private Date fechaCreado;
-    private Date fechaModificado;
+    private String cuerpo;
+    private Date fechaCreada;
+    private Date fechaModificada;
 
     public NotaGenerica(String titulo) {
-        setFechaCreado(new Date());
-        setFechaModificado(getFechaCreado());
+        setFechaCreada(new Date());
+        setFechaModificada(getFechaCreada());
         setID(new Clave(this));
         setTitulo(titulo);
     }
 
-    public TipoID getId() { // Implementa a TipoID.getValor()
+    public String toString() {
+        return getTitulo() + " - Creada: " + getFechaCreada().toString() + " - Última modificación: " + getFechaModificada().toString();
+    }
+
+    public TipoID getID() { // Implementa a TipoID.getValor()
         return ID;
     }
 
@@ -22,16 +27,16 @@ public abstract class NotaGenerica{
         return titulo;
     }
 
-    public String getDetalles() {
-        return detalles;
+    public String getCuerpo() {
+        return cuerpo;
     }
 
-    public Date getFechaCreado() {
-        return fechaCreado;
+    public Date getFechaCreada() {
+        return fechaCreada;
     }
 
-    public Date getFechaModificado() {
-        return fechaModificado;
+    public Date getFechaModificada() {
+        return fechaModificada;
     }
 
     private void setID(TipoID ID) {
@@ -42,15 +47,26 @@ public abstract class NotaGenerica{
         this.titulo = titulo;
     }
 
-    private void setDetalles(String detalles) {
-        this.detalles = detalles;
+    private void setCuerpo(String cuerpo) {
+        this.cuerpo = cuerpo;
     }
 
-    private void setFechaCreado(Date fechaCreado) {
-        this.fechaCreado = fechaCreado;
+    private void setFechaCreada(Date fechaCreada) {
+        this.fechaCreada = fechaCreada;
     }
 
-    private void setFechaModificado(Date fechaModificado) {
-        this.fechaCreado = fechaModificado;
+    protected void setFechaModificada(Date fechaModificada) {
+        this.fechaModificada = fechaModificada;
+    }
+
+    public Nota crearNota(String titulo) {
+        return new Nota(titulo);
+    }
+
+    public void modificarCuerpo(Scanner sc) {
+        System.out.println("Introduce nuevo texto: ");
+        String nuevoCuerpo = sc.nextLine();
+        setCuerpo(nuevoCuerpo);
+        setFechaModificada(new Date());
     }
 }
