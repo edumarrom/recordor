@@ -16,7 +16,7 @@ public abstract class NotaGenerica{
     }
 
     public String toString() {
-        return getTitulo() + " - Creada: " + getFechaCreada().toString() + " - Última modificación: " + getFechaModificada().toString();
+        return "(" + getID() + ") " + getTitulo() + " - Creada: " + getFechaCreada().toString() + " - Última modificación: " + getFechaModificada().toString();
     }
 
     public TipoID getID() { // Implementa a TipoID.getValor()
